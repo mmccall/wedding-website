@@ -906,7 +906,16 @@
 
 
 				var places = [
-					['Wedding<br>The Victorian<br>2640 Main Street<br>Santa Monica, CA 90405', 34.0015115, -118.4833925, 1]
+					['Hotel Erwin<br>1697 Venice Avenue<br>Venice, CA 90291', 33.986964,-118.472413, 1, 'image_small'],
+					['Loews Hotel<br>1700 Ocean Avenue<br>Santa Monica, CA 90401', 34.009027,-118.493037, 1, 'image_small'],
+					['Marriott Hotel<br>1740 Ocean Avenue<br>Santa Monica, CA 90401', 34.007275,-118.492037, 1, 'image_small'],
+					['Le Meridien Hotel<br>530 Pico Blvd<br>Santa Monica, CA 90405', 34.01062,-118.485607, 1, 'image_small'],
+					['Custom Hotel<br>8639 Lincoln Blvd<br>Los Angeles, CA 90045', 33.958813,-118.418745, 1, 'image_small'],
+					['Hotel MdR<br>13480 Maxella Ave<br>Marina Del Rey, CA 90292', 33.98509,-118.441117, 1, 'image_small'],
+					['Hilton Hotel MdR<br>4200 Admiralty Way<br>Marina Del Rey, CA 90292', 33.9840234,-118.4574813, 1, 'image_small'],
+					['Wedding<br>The Victorian<br>2640 Main Street<br>Santa Monica, CA 90405', 34.0015115, -118.4833925, 1, 'image']
+
+
 				];
 
 				function setMarkers(map, locations) {
@@ -921,6 +930,26 @@
 						anchor: new google.maps.Point(20, 58)
 					};
 
+					var image_small = {
+						url: 'images/map-marker-sm.png',
+						// This marker is 40 pixels wide by 42 pixels tall.
+						size: new google.maps.Size(31, 29),
+						// The origin for this image is 0,0.
+						origin: new google.maps.Point(0,0),
+						// The anchor for this image is the base of the pin at 20,42.
+						anchor: new google.maps.Point(10, 31)
+					};
+
+					var image_small_two = {
+						url: 'images/map-marker-sm2.png',
+						// This marker is 40 pixels wide by 42 pixels tall.
+						size: new google.maps.Size(31, 29),
+						// The origin for this image is 0,0.
+						origin: new google.maps.Point(0,0),
+						// The anchor for this image is the base of the pin at 20,42.
+						anchor: new google.maps.Point(10, 31)
+					};
+
 					var infowindow = new google.maps.InfoWindow();
 
 					var marker, i;
@@ -929,10 +958,20 @@
 					for (var i = 0; i < locations.length; i++) {
 						var place = locations[i];
 						var myLatLng = new google.maps.LatLng(place[1], place[2], place[3]);
+						
+						var tmpIcon = {};
+
+						if (place[4] === 'image') {
+							tmpIcon = image_small_two;
+						} else {
+							tmpIcon = image_small;
+						}
+
+
 						var marker = new google.maps.Marker({
 							position: myLatLng,
 							map: map,
-							icon: image,
+							icon: tmpIcon,
 							title: place[0],
 							zIndex: place[3],
 							animation: google.maps.Animation.DROP
