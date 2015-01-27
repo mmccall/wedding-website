@@ -66,6 +66,10 @@ section {
 	padding: 80px 0;
 }
 
+.nav li {
+	font-family: "Open Sans", sans-serif;
+}
+
 .btn {
 	font-family: "Open Sans", sans-serif;
 	letter-spacing: 0.3em;
